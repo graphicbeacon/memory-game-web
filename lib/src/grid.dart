@@ -11,7 +11,10 @@ class Grid {
     gridFragment.append(new DivElement());
 
     for (var ii = 0; ii < numberOfTiles; ii++) {
-      gridFragment.firstChild.append(new Tile(emojis[ii]).generate());
+      gridFragment.firstChild.append(new Tile(
+          emoji: emojis[ii],
+          onShow: (emoji) => print('shown $emoji'),
+          onHide: () => print('hide')).generate());
     }
     return gridFragment;
   }
