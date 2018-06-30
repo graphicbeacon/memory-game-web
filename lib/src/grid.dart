@@ -5,13 +5,18 @@ import './emoji.dart';
 class Grid {
   static const int numberOfTiles = 16;
   final Set emojis;
+  final String wrapperClass;
+  bool disabled;
+  List<Map> tiles = [];
 
-  Grid() : emojis = new EmojiService().getCollection(numberOfTiles);
+  Grid({this.wrapperClass, this.disabled})
+      : emojis = new EmojiService().getCollection(numberOfTiles) {
+    createTileMap();
+  }
 
-  List buildTiles() {
+  void createTileMap() {
     var emojiList = emojis.toList();
     emojiList.addAll(new List.from(emojiList));
-    var tiles = [];
     var i = 0;
 
     // Couple a' shuffles :D
@@ -20,23 +25,22 @@ class Grid {
     emojiList.shuffle();
 
     while (i < numberOfTiles) {
-      tiles.add(new Tile(
-          emoji: emojiList[i],
-          onShow: (emoji) => print('shown $emoji'),
-          onHide: () => print('hide')).generate());
+      tiles.add({
+        "emoji": emojiList[i],
+        "onShow": (emoji) => print('shown $emoji'),
+        "onHide": () => print('hide'),
+        "disabled": disabled
+      });
       i++;
     }
-
-    return tiles;
   }
 
   DocumentFragment generate() {
-    var gridFragment = document.createDocumentFragment();
-    var tiles = buildTiles();
-    gridFragment.append(new DivElement());
+    var gridFragment = new DocumentFragment();
+    gridFragment.append(new DivElement()..className = this.wrapperClass);
 
     for (var ii = 0; ii < numberOfTiles; ii++) {
-      gridFragment.firstChild.append(tiles[ii]);
+      gridFragment.firstChild.append(Tile.fromMap(tiles[ii]).generate());
     }
 
     return gridFragment;

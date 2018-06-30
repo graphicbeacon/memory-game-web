@@ -9,12 +9,34 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+/* Game heading */
+.mg-header {
+  margin: 0 auto;
+  max-width: 600px;
+  text-align: center;
+  width: 100%;
+}
+
+.action-btns {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.action-btns__new,
+.action-btns__reset {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px;
+}
+
+/* Game body */
 #output {
   padding: 20px;
   text-align: center;
 }
 
-#output div {
+.memory-game-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 20px;
@@ -23,7 +45,7 @@ body {
   width: 100%;
 }
 
-#output div button {
+.memory-game-grid button {
   font-size: 85px;
   height: 135px;
 }
