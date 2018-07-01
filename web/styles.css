@@ -23,7 +23,7 @@ body {
   grid-template-columns: 1fr 1fr;
 }
 
-.action-btns__new,
+.action-btns__start,
 .action-btns__reset {
   font-size: 14px;
   font-weight: bold;

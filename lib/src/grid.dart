@@ -7,7 +7,7 @@ class Grid {
   final Set emojis;
   final String wrapperClass;
   bool disabled;
-  List<Map> tiles = [];
+  List<Map> _tiles;
 
   Grid({this.wrapperClass, this.disabled})
       : emojis = new EmojiService().getCollection(numberOfTiles) {
@@ -17,6 +17,7 @@ class Grid {
   void createTileMap() {
     var emojiList = emojis.toList();
     emojiList.addAll(new List.from(emojiList));
+    List<Map<String, dynamic>> tiles = [];
     var i = 0;
 
     // Couple a' shuffles :D
@@ -33,6 +34,7 @@ class Grid {
       });
       i++;
     }
+    this._tiles = tiles;
   }
 
   DocumentFragment generate() {
@@ -40,7 +42,7 @@ class Grid {
     gridFragment.append(new DivElement()..className = this.wrapperClass);
 
     for (var ii = 0; ii < numberOfTiles; ii++) {
-      gridFragment.firstChild.append(Tile.fromMap(tiles[ii]).generate());
+      gridFragment.firstChild.append(Tile.fromMap(_tiles[ii]).generate());
     }
 
     return gridFragment;
