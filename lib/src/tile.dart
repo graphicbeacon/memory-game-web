@@ -10,7 +10,6 @@ class Tile {
     this.isVisible,
     this.disabled,
   }) : _btn = new ButtonElement() {
-    print(isVisible);
     if (isVisible) {
       _btn.text = emoji;
     }
@@ -35,6 +34,7 @@ class Tile {
   ButtonElement generate() {
     return _btn
       ..disabled = disabled
-      ..addEventListener('click', (Event evt) => onClick(id));
+      ..addEventListener(
+          'click', (Event evt) => isVisible ? null : onClick(id));
   }
 }

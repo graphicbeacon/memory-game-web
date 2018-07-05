@@ -1,4 +1,3 @@
-import 'dart:html';
 import './board.dart';
 
 class MemoryGame {
@@ -8,7 +7,7 @@ class MemoryGame {
   }
 
   final String stage;
-  final MemoryGameBoard board;
+  MemoryGameBoard board;
   MemoryGameState _state;
 
   get state => _state;
@@ -23,6 +22,7 @@ class MemoryGame {
   }
 
   void reset() {
+    board = new MemoryGameBoard(stage);
     state = MemoryGameState.beforeStart;
     board.render();
   }
