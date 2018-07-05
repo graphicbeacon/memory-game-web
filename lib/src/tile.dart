@@ -1,42 +1,40 @@
 import 'dart:html';
 
-typedef ShowCallback = void Function(String emoji);
+typedef OnClickCallback = void Function(int emoji);
 
 class Tile {
   Tile({
+    this.id,
     this.emoji,
-    this.onShow,
-    this.onHide,
+    this.onClick,
+    this.isVisible,
     this.disabled,
-  }) : _btn = new ButtonElement();
+  }) : _btn = new ButtonElement() {
+    print(isVisible);
+    if (isVisible) {
+      _btn.text = emoji;
+    }
+  }
 
   Tile.fromMap(Map config)
       : this(
+          id: config["id"],
           emoji: config["emoji"],
-          onShow: config["onShow"],
-          onHide: config["onHide"],
+          onClick: config["onClick"],
+          isVisible: config["isVisible"],
           disabled: config["disabled"],
         );
 
-  final String emoji;
   final ButtonElement _btn;
-  final ShowCallback onShow;
-  final VoidCallback onHide;
+  final int id;
+  final String emoji;
+  final OnClickCallback onClick;
+  bool isVisible;
   bool disabled;
 
   ButtonElement generate() {
     return _btn
       ..disabled = disabled
-      ..addEventListener('click', _onClick);
-  }
-
-  void _onClick(Event evt) {
-    if (_btn.text == emoji) {
-      _btn.text = '';
-      onHide();
-    } else {
-      _btn.text = emoji;
-      onShow(emoji);
-    }
+      ..addEventListener('click', (Event evt) => onClick(id));
   }
 }

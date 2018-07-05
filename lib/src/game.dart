@@ -1,43 +1,30 @@
 import 'dart:html';
-import './grid.dart';
+import './board.dart';
 
 class MemoryGame {
-  MemoryGame(this.stage) {
-    initActionBtns();
+  MemoryGame(this.stage) : board = new MemoryGameBoard(stage) {
+    state = MemoryGameState.beforeStart;
+    board.render();
   }
-
-  ButtonElement btnStart = querySelector('.action-btns__start');
-  ButtonElement btnReset = querySelector('.action-btns__reset');
 
   final String stage;
-  MemoryGameState gameState = MemoryGameState.beforeStart;
+  final MemoryGameBoard board;
+  MemoryGameState _state;
 
-  void initActionBtns() {
-    btnStart.addEventListener('click', (Event evt) {
-      if (gameState == MemoryGameState.beforeStart) {
-        init(false);
-        gameState = MemoryGameState.started;
-        btnStart.disabled = true;
-        btnReset.disabled = false;
-      }
-    });
-
-    btnReset.addEventListener('click', (Event evt) {
-      if (gameState == MemoryGameState.started ||
-          gameState == MemoryGameState.ended) {
-        init(true);
-        gameState = MemoryGameState.beforeStart;
-        btnReset.disabled = true;
-        btnStart.disabled = false;
-      }
-    });
+  get state => _state;
+  set state(MemoryGameState val) {
+    _state = val;
+    board.state = _state;
   }
 
-  void init(bool disabled) {
-    querySelector(stage)
-      ..firstChild.remove()
-      ..append(new Grid(wrapperClass: 'memory-game-grid', disabled: disabled)
-          .generate());
+  void start() {
+    state = MemoryGameState.started;
+    board.render();
+  }
+
+  void reset() {
+    state = MemoryGameState.beforeStart;
+    board.render();
   }
 }
 
