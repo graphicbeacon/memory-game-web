@@ -1,0 +1,33 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "webdev serve",
+      "type": "shell",
+      "command": "webdev",
+      "args": ["serve", "--verbose"],
+      "group": "build"
+    }
+    // {
+    //   "label": "webdev serve",
+    //   "type": "shell",
+    //   "args": ["serve"],
+    //   "command": "webdev",
+    //   "group": "build",
+    //   "isBackground": true,
+    //   "problemMatcher": {
+    //     "owner": "custom",
+    //     "pattern": {
+    //       "regexp": "__________"
+    //     },
+    //     "background": {
+    //       "activeOnStart": true,
+    //       "beginsPattern": "^\\[INFO\\] Starting Build",
+    //       "endsPattern": "^\\[INFO\\] Succeeded after"
+    //     }
+    //   }
+    // }
+  ]
+}
