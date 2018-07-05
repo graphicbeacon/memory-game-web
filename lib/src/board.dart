@@ -3,6 +3,7 @@ import 'dart:async';
 
 import './emoji.dart';
 import './grid.dart';
+import './tile.dart';
 import './game.dart';
 
 class MemoryGameBoard {
@@ -42,7 +43,8 @@ class MemoryGameBoard {
         "emoji": isBeforeStart ? null : emojiList[i],
         "onClick": isBeforeStart ? null : openTileCallback,
         "isVisible": false,
-        "disabled": isBeforeStart
+        "disabled": isBeforeStart,
+        "state": null,
       });
       i++;
     }
@@ -54,7 +56,7 @@ class MemoryGameBoard {
 
     if (revealedTiles.length < 2) {
       revealedTiles.add(_tiles[id]);
-      updateTileMap(id);
+      updateTileMap(id, true, TileState.select);
       render();
     }
 
@@ -62,27 +64,34 @@ class MemoryGameBoard {
       var hasMatchingPair =
           revealedTiles[0]["emoji"] == revealedTiles[1]["emoji"];
 
-      // Check if they match and update counter if they do
+      // Check if they match and update `tileRevealCount` if they do
       if (hasMatchingPair) {
         tileRevealCount += 2;
-        revealedTiles.forEach((tile) => updateTileMap(tile["id"]));
-        render();
+        updateTiles(true, TileState.match);
         revealedTiles.clear();
       } else {
+        updateTiles(true, TileState.noMatch);
         Timer(Duration(milliseconds: 700), () {
-          revealedTiles.forEach((tile) => updateTileMap(tile["id"], false));
-          render();
+          updateTiles(false);
           revealedTiles.clear();
         });
       }
     }
   }
 
-  void updateTileMap(int id, [bool visible = true]) {
+  void updateTiles(isVisible, [TileState tileState = null]) {
+    revealedTiles
+        .forEach((tile) => updateTileMap(tile["id"], isVisible, tileState));
+    render();
+  }
+
+  void updateTileMap(int id,
+      [bool visible = true, TileState tileState = null]) {
     List<Map> tilesCopy = List.from(_tiles);
     var updatedTile = tilesCopy.singleWhere((tile) => tile["id"] == id,
         orElse: () => null)
-      ..update("isVisible", (val) => visible);
+      ..update("isVisible", (val) => visible)
+      ..update("state", (val) => tileState);
 
     tilesCopy[id] = updatedTile;
     _tiles = tilesCopy.toList();

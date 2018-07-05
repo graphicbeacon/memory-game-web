@@ -66,11 +66,23 @@ body {
   transition: all 0.5s;
 }
 
-.memory-game-grid button:disabled {
+.memory-game-grid button:empty:disabled {
   background-color: #efefef;
   opacity: 0.8;
 }
 
 .memory-game-grid button:not(:disabled):empty:hover {
   border: 2px solid #bbb;
+}
+
+.memory-game-grid .select {
+  background-color: #44b4fe;
+}
+
+.memory-game-grid .no-match {
+  background-color: hsl(348, 100%, 61%);
+}
+
+.memory-game-grid .match {
+  background-color: hsl(171, 100%, 41%);
 }
