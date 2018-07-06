@@ -75,6 +75,7 @@ body {
   display: grid;
   grid-gap: 20px;
   grid-template-columns: 1fr 1fr;
+  margin-bottom: 20px;
 }
 
 .action-btns__start,
@@ -110,6 +111,13 @@ body {
 }
 
 /* Game body */
+#timer {
+  color: white;
+  font-family: 'Press Start 2P', cursive, sans-serif;
+  font-size: 25px;
+  text-align: center;
+}
+
 #output {
   padding: 20px;
   text-align: center;

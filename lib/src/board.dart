@@ -7,13 +7,14 @@ import './tile.dart';
 import './game.dart';
 
 class MemoryGameBoard {
-  MemoryGameBoard(this.stage);
+  MemoryGameBoard(this.stage, this.onComplete);
 
   static final int numberOfTiles = 16;
   String stage;
   final Set emojis = new EmojiService().getCollection(numberOfTiles);
   List<Map> _tiles;
   MemoryGameState _state;
+  VoidCallback onComplete;
 
   int tileRevealCount = 0;
   List<Map> revealedTiles = [];
@@ -52,8 +53,6 @@ class MemoryGameBoard {
   }
 
   void openTileCallback(int id) {
-    if (tileRevealCount == numberOfTiles) return;
-
     if (revealedTiles.length < 2) {
       revealedTiles.add(_tiles[id]);
       updateTileMap(id, true, TileState.select);
@@ -69,6 +68,9 @@ class MemoryGameBoard {
         tileRevealCount += 2;
         updateTiles(true, TileState.match);
         revealedTiles.clear();
+
+        // All tiles revealed, so end game
+        if (tileRevealCount == numberOfTiles) onComplete();
       } else {
         updateTiles(true, TileState.noMatch);
         Timer(Duration(milliseconds: 700), () {

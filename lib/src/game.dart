@@ -1,7 +1,8 @@
 import './board.dart';
 
 class MemoryGame {
-  MemoryGame(this.stage) : board = new MemoryGameBoard(stage) {
+  MemoryGame(this.stage, {this.onComplete}) {
+    board = new MemoryGameBoard(stage, onComplete);
     state = MemoryGameState.beforeStart;
     board.render();
   }
@@ -9,6 +10,7 @@ class MemoryGame {
   final String stage;
   MemoryGameBoard board;
   MemoryGameState _state;
+  Function onComplete;
 
   get state => _state;
   set state(MemoryGameState val) {
@@ -22,7 +24,7 @@ class MemoryGame {
   }
 
   void reset() {
-    board = new MemoryGameBoard(stage);
+    board = new MemoryGameBoard(stage, onComplete);
     state = MemoryGameState.beforeStart;
     board.render();
   }
