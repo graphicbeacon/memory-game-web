@@ -8,7 +8,19 @@
       "type": "shell",
       "command": "webdev",
       "args": ["serve", "--verbose"],
-      "group": "build"
+      "group": "build",
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "custom",
+        "pattern": {
+          "regexp": "__________"
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\[INFO\\] Watch:Setting up",
+          "endsPattern": "^\\[INFO\\] Build:Succeeded"
+        }
+      }
     }
     // {
     //   "label": "webdev serve",

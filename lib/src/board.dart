@@ -13,12 +13,13 @@ class MemoryGameBoard {
   String stage;
   final Set emojis = new EmojiService().getCollection(numberOfTiles);
   List<Map> _tiles;
-  MemoryGameState _state;
+  MemoryGameState _state; // TODO: Remove _state
   VoidCallback onComplete;
 
   int tileRevealCount = 0;
   List<Map> revealedTiles = [];
 
+  // TODO: Remove _state
   set state(val) {
     _state = val;
     createTileMap();
@@ -33,8 +34,6 @@ class MemoryGameBoard {
 
     // Couple a' shuffles :D
     if (!isBeforeStart) {
-      emojiList.shuffle();
-      emojiList.shuffle();
       emojiList.shuffle();
     }
 
