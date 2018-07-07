@@ -1,32 +1,43 @@
 import './board.dart';
+import './watch.dart';
 
 class MemoryGame {
-  MemoryGame(this.stage, {this.onComplete}) {
-    board = new MemoryGameBoard(stage, onComplete);
+  MemoryGame(this.stage, this.timerSelector) {
+    _board = new MemoryGameBoard(stage, _end);
     state = MemoryGameState.beforeStart;
-    board.render();
+    _timer = new Watch(timerSelector);
+    _board.render();
   }
 
   final String stage;
-  MemoryGameBoard board;
+  MemoryGameBoard _board;
   MemoryGameState _state;
+  Watch _timer;
+  String timerSelector;
   Function onComplete;
 
   get state => _state;
   set state(MemoryGameState val) {
     _state = val;
-    board.state = _state;
+    _board.state = _state;
   }
 
   void start() {
     state = MemoryGameState.started;
-    board.render();
+    _timer.start();
+    _board.render();
+  }
+
+  void _end() {
+    state = MemoryGameState.ended;
+    _timer.stop();
   }
 
   void reset() {
-    board = new MemoryGameBoard(stage, onComplete);
+    _board = new MemoryGameBoard(stage, _end);
     state = MemoryGameState.beforeStart;
-    board.render();
+    _timer.reset();
+    _board.render();
   }
 }
 

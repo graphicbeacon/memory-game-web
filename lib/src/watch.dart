@@ -33,6 +33,16 @@ class Watch {
     if (_timer.isActive) _timer.cancel();
   }
 
+  reset() {
+    stop();
+
+    _hours = 0;
+    _mins = 0;
+    _secs = 0;
+
+    render();
+  }
+
   render() {
     var hh = _hours.toString(), mm = _mins.toString(), ss = _secs.toString();
 
