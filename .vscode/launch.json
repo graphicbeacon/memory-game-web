@@ -5,12 +5,19 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Launch Chrome on localhost",
       "type": "chrome",
       "request": "launch",
-      "name": "Launch Chrome against localhost",
       "url": "http://localhost:8080",
       "webRoot": "${workspaceFolder}/web",
-      "preLaunchTask": "webdev serve"
+      "preLaunchTask": "webdev serve -v"
+    },
+    {
+      "name": "Launch build on Dart server",
+      "type": "dart",
+      "request": "launch",
+      "program": "${workspaceFolder}/bin/main.dart",
+      "preLaunchTask": "webdev build"
     }
   ]
 }
