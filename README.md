@@ -2,7 +2,11 @@
 
 A memory game written in [Dart 2](https://dartlang.org) for the web.
 
-To run project under localhost:
+![Memory game web gif](./assets/memory-game-web.gif)
+
+Demo available at [https://memorygameweb.herokuapp.com](https://memorygameweb.herokuapp.com)
+
+To run project:
 
 ```bash
 $ pub get
