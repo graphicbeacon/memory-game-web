@@ -249,6 +249,21 @@ body {
   z-index: 9999;
 }
 
+#modal-close {
+  appearance: none;
+  border: 2px solid #bbbbbb;
+  border-radius: 50%;
+  color: #bbbbbb;
+  cursor: pointer;
+  font-size: 30px;
+  height: 35px;
+  line-height: 30px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 35px;
+}
+
 .modal__content {
   background-color: #ffffff;
   border-radius: 5px;

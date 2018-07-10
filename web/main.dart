@@ -9,24 +9,21 @@ void main() {
 void startApp() {
   ButtonElement btnStart = querySelector('.action-btns__start');
   ButtonElement btnReset = querySelector('.action-btns__reset');
+  ButtonElement replayGame = querySelector('.action-btns__replay-game');
   Element completionContainer =
       querySelector('.modal__content__completion-time');
 
-  Dialog modal =
-      new Dialog('#modal', closeBtnSelector: '.action-btns__replay-game',
-          onVisibilityChange: (isHidden) {
-    print('Modal is ${isHidden ? "hidden" : "visible"}');
-
-    if (isHidden) {
-      // `Play again?` button was clicked
-      btnReset.click();
-    }
-  });
+  Dialog modal = new Dialog('#modal', closeBtnSelector: '#modal-close');
   MemoryGame game =
       new MemoryGame('#output', '#timer', onComplete: (completionTime) {
     // Update before showing modal
     completionContainer..innerHtml = completionTime;
     modal.show();
+  });
+
+  replayGame.addEventListener('click', (_) {
+    modal.hide();
+    btnReset.click();
   });
 
   btnStart
