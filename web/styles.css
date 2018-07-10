@@ -128,6 +128,19 @@ body {
   background-color: #44b4fe;
 }
 
+.action-btns__replay-game {
+  appearance: none;
+  background-color: #0175c2;
+  border-radius: 5px;
+  border: 0 none;
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 25px 0;
+  padding: 15px 20px;
+}
+
 /* Game body */
 #timer {
   color: white;
@@ -209,4 +222,69 @@ body {
 
 .memory-game-grid .match {
   background-color: hsl(171, 100%, 41%);
+}
+
+/* Modal */
+#modal {
+  background-color: rgba(0, 0, 0, 0.7);
+  height: 100%;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+}
+
+.modal__content {
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: 0 none;
+  color: #555;
+  max-width: 500px;
+  padding: 30px 20px;
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+}
+
+#modal h2 {
+  font-family: 'Press Start 2P', cursive, sans-serif;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+#modal ul {
+  list-style: none outside;
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+  padding-left: 0;
+}
+
+#modal li a {
+  border-radius: 5px;
+  color: #ffffff;
+  display: inline-block;
+  font-size: 20px;
+  height: 50px;
+  line-height: 50px;
+  margin: 0 10px;
+  width: 50px;
+}
+
+#modal li a:hover {
+  opacity: 0.9;
+}
+
+.share--facebook {
+  background-color: #3b5998;
+}
+
+.share--twitter {
+  background-color: #1da1f2;
+}
+
+.share--google {
+  background-color: #db4437;
 }

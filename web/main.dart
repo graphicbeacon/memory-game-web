@@ -1,6 +1,6 @@
 import 'dart:html';
 
-import 'package:memory_game_web/src/game.dart';
+import 'package:memory_game_web/memory_game_web.dart';
 
 void main() {
   startApp();
@@ -10,7 +10,19 @@ void startApp() {
   ButtonElement btnStart = querySelector('.action-btns__start');
   ButtonElement btnReset = querySelector('.action-btns__reset');
 
-  MemoryGame game = new MemoryGame('#output', '#timer');
+  Dialog modal =
+      new Dialog('#modal', closeBtnSelector: '.action-btns__replay-game',
+          onVisibilityChange: (isHidden) {
+    print('Modal is ${isHidden ? "hidden" : "visible"}');
+
+    if (isHidden) {
+      // `Play again?` button was clicked
+      btnReset.click();
+    }
+  });
+  MemoryGame game = new MemoryGame('#output', '#timer', onComplete: () {
+    modal.show();
+  });
 
   btnStart
     ..disabled = false

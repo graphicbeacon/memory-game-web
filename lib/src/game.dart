@@ -2,7 +2,7 @@ import './board.dart';
 import './watch.dart';
 
 class MemoryGame {
-  MemoryGame(this.stage, this.timerSelector) {
+  MemoryGame(this.stage, this.timerSelector, {this.onComplete}) {
     _board = new MemoryGameBoard(stage, _end);
     state = MemoryGameState.beforeStart;
     _timer = new Watch(timerSelector);
@@ -31,6 +31,8 @@ class MemoryGame {
   void _end() {
     state = MemoryGameState.ended;
     _timer.stop();
+
+    if (onComplete is Function) onComplete(); // TODO return completion time?
   }
 
   void reset() {
