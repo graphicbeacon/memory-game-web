@@ -32,7 +32,8 @@ class MemoryGame {
     state = MemoryGameState.ended;
     _timer.stop();
 
-    if (onComplete is Function) onComplete(); // TODO return completion time?
+    if (onComplete is Function)
+      onComplete(_timer.currentTime); // TODO return completion time?
   }
 
   void reset() {

@@ -9,6 +9,8 @@ void main() {
 void startApp() {
   ButtonElement btnStart = querySelector('.action-btns__start');
   ButtonElement btnReset = querySelector('.action-btns__reset');
+  Element completionContainer =
+      querySelector('.modal__content__completion-time');
 
   Dialog modal =
       new Dialog('#modal', closeBtnSelector: '.action-btns__replay-game',
@@ -20,7 +22,10 @@ void startApp() {
       btnReset.click();
     }
   });
-  MemoryGame game = new MemoryGame('#output', '#timer', onComplete: () {
+  MemoryGame game =
+      new MemoryGame('#output', '#timer', onComplete: (completionTime) {
+    // Update before showing modal
+    completionContainer..innerHtml = completionTime;
     modal.show();
   });
 

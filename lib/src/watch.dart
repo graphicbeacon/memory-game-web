@@ -10,8 +10,9 @@ class Watch {
   int _hours = 0, _mins = 0, _secs = 0;
   Element _clockSelector;
   Timer _timer;
+  String currentTime;
 
-  start() {
+  void start() {
     _timer = Timer.periodic(Duration(seconds: 1), (_) {
       _secs++;
 
@@ -29,11 +30,11 @@ class Watch {
     });
   }
 
-  stop() {
+  void stop() {
     if (_timer.isActive) _timer.cancel();
   }
 
-  reset() {
+  void reset() {
     stop();
 
     _hours = 0;
@@ -43,13 +44,14 @@ class Watch {
     render();
   }
 
-  render() {
+  void render() {
     var hh = _hours.toString(), mm = _mins.toString(), ss = _secs.toString();
 
     if (_hours < 10) hh = '0$_hours';
     if (_mins < 10) mm = '0$_mins';
     if (_secs < 10) ss = '0$_secs';
 
-    _clockSelector..innerHtml = '$hh:$mm:$ss';
+    currentTime = '$hh:$mm:$ss';
+    _clockSelector..innerHtml = currentTime;
   }
 }

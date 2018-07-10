@@ -59,7 +59,7 @@ body {
   box-sizing: border-box;
 }
 
-/* Game heading */
+/* Game heading/footer */
 .mg-header {
   padding: 0 20px;
   text-align: center;
@@ -72,6 +72,16 @@ body {
   font-size: 30px;
   padding: 40px 0;
   margin: 0;
+}
+
+.mg-footer {
+  color: #ffffff;
+  margin: 50px 0;
+  text-align: center;
+}
+
+.mg-footer a {
+  color: #44b4fe;
 }
 
 @media screen and (max-width: 640px) {
@@ -139,6 +149,10 @@ body {
   font-weight: bold;
   margin: 25px 0;
   padding: 15px 20px;
+}
+
+.action-btns__replay-game:hover {
+  background-color: #44b4fe;
 }
 
 /* Game body */
@@ -243,14 +257,24 @@ body {
   max-width: 500px;
   padding: 30px 20px;
   text-align: center;
-  margin: 0 auto;
+  left: 50%;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
   width: 100%;
+}
+
+.modal__content__completion-time {
+  font-family: 'Press Start 2P', cursive, sans-serif;
+  font-size: 30px;
+  margin: 30px 0 20px;
 }
 
 #modal h2 {
   font-family: 'Press Start 2P', cursive, sans-serif;
-  font-size: 22px;
+  font-size: 25px;
   font-weight: bold;
+  line-height: 1.5;
   margin-bottom: 20px;
 }
 

@@ -31,18 +31,22 @@
       <button class="action-btns__reset" disabled>Reset</button>
     </div>
   </header>
+
   <main>
     <aside id="timer"></aside>
     <div id="output">Loading...</div>
   </main>
+
   <div id="modal" hidden>
     <div class="modal__content">
       <h2>You're Awesome!</h2>
+      <p class="modal__content__completion-time"></p>
       <button class="action-btns__replay-game">Play again?</button>
       <h3>Be more awesome by sharing</h3>
       <ul>
         <li>
-          <a href="https://twitter.com/share?url=https://memorygameweb.herokuapp.com" title="Twitter" class="share--twitter">
+          <a href="https://twitter.com/home?status=Wondering%20how%20to%20improve%20your%20memory%20%F0%9F%A7%A0?%20Check%20out%20this%20game!%20%F0%9F%8E%AE%F0%9F%92%A5Built%20with%20%23dartlang%20%23html5%20%23css3%20%23cssgrid%20by%20%40graphicbeacon%20https%3A//memorygameweb.herokuapp.com"
+            title="Twitter" class="share--twitter">
             <span class="fa fa-twitter"></span>
           </a>
         </li>
@@ -56,15 +60,18 @@
             <span class="fa fa-google"></span>
           </a>
         </li>
-      </ul>
-      <footer>
-        <p>Created in
-          <a href="https://www.dartlang.org">Dart</a> by
-          <a href="https://twitter.com/graphicbeacon">Jermaine Oppong</a>
-        </p>
-      </footer>
     </div>
   </div>
+  </ul>
+
+  <footer class="mg-footer">
+    <p>Created with
+      <a href="https://www.dartlang.org" target="_blank">Dart</a> by
+      <a href="https://twitter.com/graphicbeacon" target="_blank">Jermaine Oppong</a>
+      <br />
+      <a href="https://github.com/graphicbeacon" target="_blank">View source on Github</a>
+    </p>
+  </footer>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </body>
